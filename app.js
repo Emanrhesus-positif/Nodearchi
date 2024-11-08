@@ -61,7 +61,10 @@ app.get('/', async (request, reply) => {
 
 //server start and run
 try {
-    await app.listen({port:3000});
+    await app.listen({
+        port: process.env.PORT || 3000,
+        host: process.env.HOST || localhost
+    });
     await app.ready();
     console.log(`Server listening on ${app.server.address().port}`);
 }
