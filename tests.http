@@ -1,0 +1,43 @@
+GET http://127.0.0.1:3000/posts
+###
+
+POST http://127.0.0.1:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzMwODk5ODExfQ.QexQt7wIn1z19SYPQRWc9-l_JTZHp4q9IM6kl3lkdgU
+
+{
+  "title": "f11111dftt1fdfezerzeoo",
+  "content": "bagehrjetjejrsdfsdf"
+}
+
+###
+PUT http://127.0.0.1:3000/posts/12
+Content-Type: application/json
+
+{
+  "title": "fmodifié"
+}
+
+###
+DELETE http://127.0.0.1:3000/posts/10
+
+###
+
+POST http://127.0.0.1:3000/signup
+Content-Type: application/json
+
+{
+    "username": "picko",
+    "email": "foo",
+    "password": "bar"
+}
+###
+GET http://127.0.0.1:3000/users
+###
+POST http://127.0.0.1:3000/login
+Content-Type: application/json
+
+{
+    "email": "foo",
+    "password": "bar"
+}

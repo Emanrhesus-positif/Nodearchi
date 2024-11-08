@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model empty {
+  test Int
+
+  @@ignore
+}
+
+model users {
+  id       Int     @id @default(autoincrement())
+  email    String  @db.VarChar(100)
+  username String  @db.VarChar(50)
+  password String  @db.VarChar(50)
+  posts    posts[]
+}
+
+model posts {
+  id       Int    @id @default(autoincrement())
+  author   users  @relation(fields: [authorId], references: [id])
+  authorId Int
+  title    String @db.VarChar(2000)
+  content  String @db.VarChar(2000)
+  categories CategoriesOnPosts[]
+}
+
+model categories {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(50)
+  posts CategoriesOnPosts[]
+
+}
+
+model CategoriesOnPosts {
+  post       posts     @relation(fields: [postId], references: [id])
+  postId     Int // relation scalar field (used in the `@relation` attribute above)
+  category   categories @relation(fields: [categoryId], references: [id])
+  categoryId Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  @@id([postId, categoryId])
+}
