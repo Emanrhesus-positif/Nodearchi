@@ -63,7 +63,7 @@ app.get('/', async (request, reply) => {
 try {
     await app.listen({
         port: process.env.PORT || 3000,
-        host: process.env.HOST || localhost
+        host: process.env.HOST || `localhost`
     });
     await app.ready();
     console.log(`Server listening on ${app.server.address().port}`);
